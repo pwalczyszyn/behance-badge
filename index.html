@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Behance Badge</title>
+        <script>
+            function getUrlVars() {
+                var vars = [], hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < hashes.length; i++) {
+                    hash = hashes[i].split('=');
+                    vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
+                }
+                return vars;
+            }
+            
+            function userData(data) {
+                console.log(data);
+                if (data.http_code == 200) {
+                    var u = data.user;
+                    document.getElementById('avatar').src = u.images['50'];
+                    document.getElementById('name').innerHTML = u.display_name;
+                    
+                }
+            }
+            
+            var vars = getUrlVars(),
+                script = document.createElement('script');
+            script.src='http://www.behance.net/v2/users/' + vars.u + '?api_key=hJF39NqzxoTyItdsoY0oMHmGZmxlm2sy&callback=userData';
+            document.head.appendChild(script);
+        </script>
+    </head>
+    
+    <body>
+        <img id="avatar">
+        <p id="name"></p>
+    </body>
+
+</html>
