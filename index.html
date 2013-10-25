@@ -1,40 +1,67 @@
 <!doctype html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <title>Behance Badge</title>
-        <script>
-            function getUrlVars() {
-                var vars = [], hash;
-                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-                for (var i = 0; i < hashes.length; i++) {
-                    hash = hashes[i].split('=');
-                    vars.push(hash[0]);
-                    vars[hash[0]] = hash[1];
-                }
-                return vars;
-            }
-            
-            function userData(data) {
-                console.log(data);
-                if (data.http_code == 200) {
-                    var u = data.user;
-                    document.getElementById('avatar').src = u.images['50'];
-                    document.getElementById('name').innerHTML = u.display_name;
-                    
-                }
-            }
-            
-            var vars = getUrlVars(),
-                script = document.createElement('script');
-            script.src='http://www.behance.net/v2/users/' + vars.u + '?api_key=hJF39NqzxoTyItdsoY0oMHmGZmxlm2sy&callback=userData';
-            document.head.appendChild(script);
-        </script>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/main.js"></script>
     </head>
     
     <body>
-        <img id="avatar">
-        <p id="name"></p>
+        <div class="wrapper">
+            <div class="top-bar">
+                <a id="name" class="top-bar__full-name" title="User profile page"></a>
+                <a href="http://be.net" title="Behance">
+                    <img src="img/behance.png" class="top-bar__img">
+                </a>
+            </div>
+            <div class="main-conntent">
+                <img id="avatar" class="avatar">
+                <div id="occupation" class="main-conntent__line bold">
+                </div>
+                <div id="company" class="main-conntent__line">
+                </div>
+                <div class="main-conntent__line">
+                    <div class="stat">
+                        <span class="stat-icon">G</span>
+                        <a id="views" class="stat-value" title="User stats page"></a>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">F</span>
+                        <a id="appreciations" class="stat-value" title="User stats page"></a>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">I</span>
+                        <a id="followers" class="stat-value" title="User stats page"></a>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">H</span>
+                        <a id="following" class="stat-value" title="User stats page"></a>
+                    </div>
+                </div>
+
+                <div id="wip-thumb" class="thumb" style="display:none">
+                    <hr>
+                    <div class="thumb__header">
+                        Working on: <a id="wip-name" class="bold" title="Latest WIP"></a>
+                    </div>
+                    <a id="wip-img-link" title="Latest WIP">
+                        <img id="wip-img" class="thumb__img">
+                    </a>
+                </div>
+
+                <div id="project-thumb" class="thumb" style="display:none">
+                    <hr>
+                    <div class="thumb__header">
+                        Worked on: <a id="project-name" class="bold" title="Latest project"></a>
+                    </div>
+                    <a id="project-img-link" title="Latest project">
+                        <img id="project-img" class="thumb__img">
+                    </a>
+                </div>
+            </div>
+        </div>
     </body>
 
 </html>
