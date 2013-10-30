@@ -19,7 +19,6 @@
 
     if (vars.u) {
         window.userData = function userData(data) {
-            console.log('userData:', data);
             if (data.http_code == 200) {
                 var u = data.user;
                 var name = document.getElementById('name');
@@ -56,7 +55,6 @@
 
     if (vars.p == '1') {
         window.userProjects = function userProjects(data) {
-            console.log('userProjects:', data);
             if (data.http_code == 200) {
                 var p = data.projects[0];
                 if (p) {
